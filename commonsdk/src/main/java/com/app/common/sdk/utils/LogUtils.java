@@ -1,6 +1,8 @@
 package com.app.common.sdk.utils;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by Administrator on 2016/11/26.
@@ -15,11 +17,11 @@ public class LogUtils {
         StackTraceElement caller = new Throwable().fillInStackTrace()
                 .getStackTrace()[2];
         return new StringBuilder()
-                .append("[")
                 .append(caller.getClassName().substring(
                         caller.getClassName().lastIndexOf(".") + 1,
-                        caller.getClassName().length())).append("].")
-                .append(caller.getMethodName()).append("(): ").toString();
+                        caller.getClassName().length())).append(".")
+                .append(caller.getMethodName()).append("().line")
+                .append(caller.getLineNumber()).append(": ").toString();
     }
 
     public static void v(String msg) { // verbose
@@ -29,9 +31,7 @@ public class LogUtils {
     }
 
     public static void i(String msg) { // info
-        if(DEBUG){
-            Log.i(TAG, getClassMsg() + msg);
-        }
+        Log.i(TAG, getClassMsg() + msg);
     }
 
     public static void d(String msg) { // debug
@@ -52,5 +52,9 @@ public class LogUtils {
         if(DEBUG){
             Log.d(TAG, getClassMsg() + msg, new Throwable());
         }
+    }
+
+    public static void toastMsg(Context context, String msg){
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
     }
 }
