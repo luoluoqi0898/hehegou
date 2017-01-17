@@ -16,11 +16,11 @@ public abstract class ProgressCallBack<T> extends BaseCallback<T> {
 
     public ProgressCallBack(Context context){
         mContext  = context;
-        initSpotsDialog();
+        initProgressDialog();
     }
 
 
-    private  void initSpotsDialog(){
+    private  void initProgressDialog(){
         mDialog = new SpotsDialog(mContext,"拼命加载中...");
     }
 

@@ -23,8 +23,22 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.jiechic.library:xUtils:2.6.14'
-//    compile 'com.squareup.okhttp3:okhttp:3.5.0'
+
+    //okhttp请求 start
+    //    compile 'com.squareup.okhttp3:okhttp:3.5.0'
     compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.squareup.okhttp:okhttp:2.5.0'
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
+    //okhttp请求 end
+
+    //点状进度条
     compile 'com.github.d-max:spots-dialog:0.4@aar'
+
+    //轮播图片 start
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.slider:library:1.1.5@aar'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    //轮播图片end
+
+    compile 'com.squareup.okhttp3:okhttp-android-support:3.5.0'
+//    compile 'com.squareup.okhttp:okhttp:2.7.5'
 }

@@ -30,6 +30,7 @@
             android:id="@+id/custom_indicator"
             style="@style/AndroidImageSlider_Corner_Oval_Orange"
             android:layout_gravity="center_horizontal|bottom"
+            android:visibility="gone"
             />
 
     </FrameLayout>

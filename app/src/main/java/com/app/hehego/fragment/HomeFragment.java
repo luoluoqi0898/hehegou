@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.app.common.sdk.http.OkHttpHelper;
 import com.app.common.sdk.utils.LogUtils;
 import com.app.hehego.R;
 import com.app.hehego.bean.SliderBean;
@@ -16,9 +17,12 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.squareup.okhttp.Response;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import http.MyHttpCallback;
 
 public class HomeFragment extends Fragment {
 
@@ -31,6 +35,8 @@ public class HomeFragment extends Fragment {
 
     private Context mContext;
 
+    private OkHttpHelper mHttpHelper;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,25 +44,44 @@ public class HomeFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
         mSliderLayout = (SliderLayout)view.findViewById(R.id.slider);
         mPagerIndicator = (PagerIndicator)view.findViewById(R.id.custom_indicator);
+        mHttpHelper = OkHttpHelper.getInstance();
 
-        initSliderData();
-        initSliderLayout();
+        requestSliderData();
         return view;
     }
 
-    private void initSliderData(){
-        SliderBean sliderBean = new SliderBean();
-        sliderBean.setImgUrl("http://7mno4h.com2.z0.glb.qiniucdn.com/5608eb8cN9b9a0a39.jpg");
-        sliderBean.setName("手机国庆礼");
-        SliderBean sliderBean2 = new SliderBean();
-        sliderBean2.setImgUrl("http://7mno4h.com2.z0.glb.qiniucdn.com/5608cae6Nbb1a39f9.jpg");
-        sliderBean2.setName("IT生活");
-        SliderBean sliderBean3 = new SliderBean();
-        sliderBean3.setImgUrl("http://7mno4h.com2.z0.glb.qiniucdn.com/560a409eN35e252de.jpg");
-        sliderBean3.setName("大放假");
-        mSliderBean.add(sliderBean);
-        mSliderBean.add(sliderBean2);
-        mSliderBean.add(sliderBean3);
+    private void requestSliderData(){
+//        SliderBean sliderBean = new SliderBean();
+//        sliderBean.setImgUrl("http://7mno4h.com2.z0.glb.qiniucdn.com/5608eb8cN9b9a0a39.jpg");
+//        sliderBean.setName("手机国庆礼");
+//        SliderBean sliderBean2 = new SliderBean();
+//        sliderBean2.setImgUrl("http://7mno4h.com2.z0.glb.qiniucdn.com/5608cae6Nbb1a39f9.jpg");
+//        sliderBean2.setName("IT生活");
+//        SliderBean sliderBean3 = new SliderBean();
+//        sliderBean3.setImgUrl("http://7mno4h.com2.z0.glb.qiniucdn.com/560a409eN35e252de.jpg");
+//        sliderBean3.setName("大放假");
+//        mSliderBean.add(sliderBean);
+//        mSliderBean.add(sliderBean2);
+//        mSliderBean.add(sliderBean3);
+        String url ="http://112.124.22.238:8081/course_api/banner/query?type=1";
+        mHttpHelper.get(url, new MyHttpCallback<List<SliderBean>>(getActivity()){
+
+            @Override
+            public void onSuccess(Response response, List<SliderBean> sliderBeans) {
+                LogUtils.i("sliderBeans.size = " + sliderBeans.size());
+                mSliderBean = sliderBeans;
+                initSliderLayout();
+                mPagerIndicator.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onError(Response response, int code, Exception e) {
+
+            }
+        });
+
+
+
     }
     private void initSliderLayout(){
         for (SliderBean sliderBean : mSliderBean){
