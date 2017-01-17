@@ -6,17 +6,18 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.FormEncodingBuilder;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class OkHttpHelper {
 
@@ -32,18 +33,6 @@ public class OkHttpHelper {
 
     private Handler mMainHandler;
 
-    private OkHttpHelper() {
-
-        mHttpClient = new OkHttpClient();
-        mHttpClient.setConnectTimeout(10, TimeUnit.SECONDS);
-        mHttpClient.setReadTimeout(10, TimeUnit.SECONDS);
-        mHttpClient.setWriteTimeout(30, TimeUnit.SECONDS);
-
-        mGson = new Gson();
-
-        mMainHandler = new Handler(Looper.getMainLooper());
-    }
-
     public static OkHttpHelper getInstance() {
         if(sInstance == null){
             synchronized (OkHttpHelper.class){
@@ -52,6 +41,26 @@ public class OkHttpHelper {
             }
         }
         return sInstance;
+    }
+
+    private OkHttpHelper() {
+        okhttp3.OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        //可以设置超时、cookie等
+        mHttpClient=builder
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
+                .build();
+
+        mHttpClient = new OkHttpClient();
+//        mHttpClient.setConnectTimeout(10, TimeUnit.SECONDS);
+//        mHttpClient.setReadTimeout(10, TimeUnit.SECONDS);
+//        mHttpClient.setWriteTimeout(30, TimeUnit.SECONDS);
+
+        mGson = new Gson();
+
+        mMainHandler = new Handler(Looper.getMainLooper());
     }
 
     public void get(String url, BaseCallback callback, Map<String, Object> param, String token) {
@@ -86,16 +95,13 @@ public class OkHttpHelper {
         callback.onBeforeRequest(request);
 
         mHttpClient.newCall(request).enqueue(new Callback() {
-
             @Override
-            public void onFailure(Request request, IOException e) {
+            public void onFailure(Call call, IOException e) {
                 callbackFailure(callback, request, e);
             }
 
             @Override
-            public void onResponse(Response response) throws IOException {
-
-//                    callback.onResponse(response);
+            public void onResponse(Call call, Response response) throws IOException {
                 callbackResponse(callback, response);
 
                 if (response.isSuccessful()) {
@@ -230,16 +236,16 @@ public class OkHttpHelper {
         return url;
     }
 
-    private RequestBody builderFormData(Map<String, Object> params, String token) {
+    private RequestBody builderFormData(Map<String, Object> bodyParams, String token) {
 
-        FormEncodingBuilder builder = new FormEncodingBuilder();
+        okhttp3.FormBody.Builder builder = new okhttp3.FormBody.Builder();
 
-        if (params != null) {
-            for (Map.Entry<String, Object> entry : params.entrySet()) {
+        if (bodyParams != null) {
+            for (Map.Entry<String, Object> entry : bodyParams.entrySet()) {
                 builder.add(entry.getKey(), entry.getValue() == null ? "" : entry.getValue().toString());
             }
 
-//                String token = CniaoApplication.getInstance().getToken();
+//          String token = CniaoApplication.getInstance().getToken();
             if (!TextUtils.isEmpty(token)) {
                 builder.add("token", token);
             }

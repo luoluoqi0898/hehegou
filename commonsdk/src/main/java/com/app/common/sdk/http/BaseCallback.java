@@ -1,12 +1,16 @@
 package com.app.common.sdk.http;
 
 import com.google.gson.internal.$Gson$Types;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+
+import okhttp3.Request;
+import okhttp3.Response;
+
+//import com.squareup.okhttp.Request;
+//import com.squareup.okhttp.Response;
 
 
 public abstract class BaseCallback <T> {

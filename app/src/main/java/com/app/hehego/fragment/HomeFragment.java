@@ -17,12 +17,12 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
-import com.squareup.okhttp.Response;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import http.MyHttpCallback;
+import okhttp3.Response;
 
 public class HomeFragment extends Fragment {
 

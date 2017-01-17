@@ -2,17 +2,16 @@ package com.app.common.sdk.http;
 
 import android.content.Context;
 
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-
 import dmax.dialog.SpotsDialog;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public abstract class ProgressCallBack<T> extends BaseCallback<T> {
 
     protected Context mContext;
 
-    private  SpotsDialog mDialog;
+    private SpotsDialog mDialog;
 
     public ProgressCallBack(Context context){
         mContext  = context;

@@ -9,19 +9,13 @@ import com.app.common.sdk.utils.LogUtils;
 import com.app.hehego.HehegoApplication;
 import com.app.hehego.R;
 import com.app.hehego.activity.LoginActivity;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
+
+import okhttp3.Request;
+import okhttp3.Response;
 
 //import cniao5.com.cniao5shop.R;
 //import cniao5.com.cniao5shop.activity.CniaoApplication;
-//import cniao5.com.cniao5shop.activity.LoginActivity;
-//import cniao5.com.cniao5shop.utils.ToastUtils;
 
-
-/**
- * Created by <a href="http://www.cniao5.com">菜鸟窝</a>
- * 一个专业的Android开发在线教育平台
- */
 public abstract class MyHttpCallback<T> extends ProgressCallBack<T> {
 
     public MyHttpCallback(Context context){
