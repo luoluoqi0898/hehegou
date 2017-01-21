@@ -3,7 +3,7 @@ package com.app.hehego;
 import android.app.Application;
 import android.content.Context;
 
-import com.app.common.sdk.utils.LogUtils;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 /**
  * Created by Administrator on 2017/1/15.
@@ -19,7 +19,6 @@ public class HehegoApplication extends Application {
     }
 
     public static Context getAppContext(){
-        LogUtils.e("mInstance isnull= " + (mInstance == null));
         return mInstance.getApplicationContext();
     }
 
@@ -27,5 +26,6 @@ public class HehegoApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        Fresco.initialize(this);
     }
 }

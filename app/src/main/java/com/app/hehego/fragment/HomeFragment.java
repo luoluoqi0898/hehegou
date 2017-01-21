@@ -87,7 +87,6 @@ public class HomeFragment extends Fragment {
         });
     }
 
-
     /**
      * 初始化轮播数据
      */

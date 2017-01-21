@@ -4,17 +4,18 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.common.sdk.utils.LogUtils;
 import com.app.hehego.R;
 import com.app.hehego.bean.Campaign;
 import com.app.hehego.bean.HomeCampaign;
-import com.squareup.picasso.Picasso;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -73,9 +74,16 @@ public class HomeCatgoryAdapter extends RecyclerView.Adapter<HomeCatgoryAdapter.
         HomeCampaign homeCampaign = mDatas.get(i);
         viewHolder.textTitle.setText(homeCampaign.getTitle());
 
-        Picasso.with(mContext).load(homeCampaign.getCpOne().getImgUrl()).into(viewHolder.imageViewBig);
-        Picasso.with(mContext).load(homeCampaign.getCpTwo().getImgUrl()).into(viewHolder.imageViewSmallTop);
-        Picasso.with(mContext).load(homeCampaign.getCpThree().getImgUrl()).into(viewHolder.imageViewSmallBottom);
+//        Picasso.with(mContext).load(homeCampaign.getCpOne().getImgUrl()).into(viewHolder.imageViewBig);
+//        Picasso.with(mContext).load(homeCampaign.getCpTwo().getImgUrl()).into(viewHolder.imageViewSmallTop);
+//        Picasso.with(mContext).load(homeCampaign.getCpThree().getImgUrl()).into(viewHolder.imageViewSmallBottom);
+
+        LogUtils.i("homeCampaign.getCpOne().getImgUrl() = " + homeCampaign.getCpOne().getImgUrl());
+        viewHolder.imageViewBig.setImageURI(Uri.parse(homeCampaign.getCpOne().getImgUrl()));
+        viewHolder.imageViewSmallTop.setImageURI(homeCampaign.getCpTwo().getImgUrl());
+        viewHolder.imageViewSmallBottom.setImageURI(homeCampaign.getCpThree().getImgUrl());
+
+
 
     }
 
@@ -105,18 +113,18 @@ public class HomeCatgoryAdapter extends RecyclerView.Adapter<HomeCatgoryAdapter.
 
 
         TextView textTitle;
-        ImageView imageViewBig;
-        ImageView imageViewSmallTop;
-        ImageView imageViewSmallBottom;
+        SimpleDraweeView imageViewBig;
+        SimpleDraweeView imageViewSmallTop;
+        SimpleDraweeView imageViewSmallBottom;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
 
             textTitle = (TextView) itemView.findViewById(R.id.text_title);
-            imageViewBig = (ImageView) itemView.findViewById(R.id.imgview_big);
-            imageViewSmallTop = (ImageView) itemView.findViewById(R.id.imgview_small_top);
-            imageViewSmallBottom = (ImageView) itemView.findViewById(R.id.imgview_small_bottom);
+            imageViewBig = (SimpleDraweeView) itemView.findViewById(R.id.imgview_big);
+            imageViewSmallTop = (SimpleDraweeView) itemView.findViewById(R.id.imgview_small_top);
+            imageViewSmallBottom = (SimpleDraweeView) itemView.findViewById(R.id.imgview_small_bottom);
 
 
             imageViewBig.setOnClickListener(this);
