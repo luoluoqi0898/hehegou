@@ -92,6 +92,8 @@ public class OkHttpHelper {
 
     public void request(final Request request, final BaseCallback callback) {
 
+        //这样要添加网络判断
+
         callback.onBeforeRequest(request);
 
         mHttpClient.newCall(request).enqueue(new Callback() {

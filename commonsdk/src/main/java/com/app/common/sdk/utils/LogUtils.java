@@ -9,7 +9,7 @@ import android.widget.Toast;
  */
 public class LogUtils {
 
-    private static final String TAG = "CommonSdk";
+    private static final String TAG = "luoqi_CommonSdk";
     /**log总开关*/
     public static final boolean DEBUG = true;
 

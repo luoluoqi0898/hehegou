@@ -13,9 +13,6 @@ import com.app.hehego.activity.LoginActivity;
 import okhttp3.Request;
 import okhttp3.Response;
 
-//import cniao5.com.cniao5shop.R;
-//import cniao5.com.cniao5shop.activity.CniaoApplication;
-
 public abstract class MyHttpCallback<T> extends ProgressCallBack<T> {
 
     public MyHttpCallback(Context context){
