@@ -1,4 +1,4 @@
-package com.app.common.sdk.view;
+package com.app.uisdk.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.app.common.sdk.R;
+import com.app.uisdk.R;
 
 public class CNiaoToolBar extends Toolbar {
 
@@ -94,7 +94,7 @@ public class CNiaoToolBar extends Toolbar {
         setRightButtonIcon(getResources().getDrawable(icon));
     }
 
-    public void setRightButtonOnClickListener(OnClickListener li) {
+    public void setRightButtonOnClickListener(View.OnClickListener li) {
         mRightButton.setOnClickListener(li);
     }
 

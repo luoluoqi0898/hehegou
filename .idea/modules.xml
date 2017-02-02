@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonsdk/commonsdk.iml" filepath="$PROJECT_DIR$/commonsdk/commonsdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/extendUiSdk/extendUiSdk.iml" filepath="$PROJECT_DIR$/extendUiSdk/extendUiSdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/hehego.iml" filepath="$PROJECT_DIR$/hehego.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uiSdk/uiSdk.iml" filepath="$PROJECT_DIR$/uiSdk/uiSdk.iml" />
     </modules>
   </component>
 </project>

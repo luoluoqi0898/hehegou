@@ -11,6 +11,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/commonsdk" />
+            <option value="$PROJECT_DIR$/extendUiSdk" />
+            <option value="$PROJECT_DIR$/uiSdk" />
           </set>
         </option>
         <option name="myModules">
@@ -18,6 +20,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/commonsdk" />
+            <option value="$PROJECT_DIR$/extendUiSdk" />
+            <option value="$PROJECT_DIR$/uiSdk" />
           </set>
         </option>
       </GradleProjectSettings>

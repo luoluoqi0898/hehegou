@@ -1,4 +1,4 @@
-package com.app.common.sdk.view;
+package com.app.uisdk.view;
 
 
 

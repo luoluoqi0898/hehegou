@@ -16,7 +16,7 @@
         />
 
 
-    <com.app.common.sdk.view.FragmentTabHost
+    <com.app.uisdk.view.FragmentTabHost
         android:id="@android:id/tabhost"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -28,6 +28,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="0"/>
-    </com.app.common.sdk.view.FragmentTabHost>
+    </com.app.uisdk.view.FragmentTabHost>
 
 </LinearLayout>
