@@ -1,10 +1,9 @@
-package http;
+package com.app.hehego.http;
 
 import android.content.Context;
 import android.content.Intent;
 
 import com.app.common.sdk.http.ProgressCallBack;
-import com.app.common.sdk.http.TokenManager;
 import com.app.common.sdk.utils.LogUtils;
 import com.app.hehego.HehegoApplication;
 import com.app.hehego.R;
@@ -13,9 +12,9 @@ import com.app.hehego.activity.LoginActivity;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public abstract class MyHttpCallback<T> extends ProgressCallBack<T> {
+public abstract class TokenHttpCallback<T> extends ProgressCallBack<T> {
 
-    public MyHttpCallback(Context context){
+    public TokenHttpCallback(Context context){
         super(context);
     }
 
@@ -43,8 +42,7 @@ public abstract class MyHttpCallback<T> extends ProgressCallBack<T> {
         intent.setClass(mContext, LoginActivity.class);
         mContext.startActivity(intent);
 
-        TokenManager.getInstance().clearToken(HehegoApplication.getInstance(),HehegoApplication.PREFERENCE_NAME);
-
+        HehegoApplication.getInstance().clearUser();
     }
 
 

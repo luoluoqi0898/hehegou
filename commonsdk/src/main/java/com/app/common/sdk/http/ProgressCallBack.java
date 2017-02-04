@@ -47,5 +47,8 @@ public abstract class ProgressCallBack<T> extends BaseCallback<T> {
         dismissDialog();
     }
 
+    @Override
+    public void onTokenError(Response response, int code) {
 
+    }
 }

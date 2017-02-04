@@ -1,7 +1,11 @@
 package com.app.common.sdk.http;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.text.TextUtils;
+
+import com.app.common.sdk.bean.User;
+import com.app.common.sdk.utils.JSONUtil;
+import com.app.common.sdk.utils.PreferencesUtils;
 
 /**
  * Created by Administrator on 2017/1/15.
@@ -9,35 +13,37 @@ import android.content.SharedPreferences;
 
 public class TokenManager {
 
-    private static TokenManager sInstance;
-
     public static final String TOKEN="token";
 
-    public static TokenManager getInstance(){
-        if(sInstance == null){
-            synchronized (TokenManager.class){
-                if(sInstance == null){
-                    sInstance = new TokenManager();
-                }
-            }
+    public static final String USER_JSON="user_json";
+
+    public static String getToken(Context context,String preferenceName){
+        return PreferencesUtils.getString(context, preferenceName, TOKEN, null);
+    }
+
+    public static  boolean clearToken(Context context, String preferenceName) {
+        return PreferencesUtils.putString(context, preferenceName, TOKEN, "");
+    }
+
+    public static User getUser(Context context, String preferenceName){
+        String user_json = PreferencesUtils.getString(context,preferenceName,USER_JSON,null);
+        if(!TextUtils.isEmpty(user_json)){
+            return  JSONUtil.fromJson(user_json,User.class);
         }
-        return sInstance;
+        return  null;
     }
 
-    private TokenManager(){
-
+    public static boolean clearUser(Context context,String preferenceName) {
+        return PreferencesUtils.putString(context, preferenceName, USER_JSON, "");
     }
 
-    public String getToken(Context context,String preferenceName){
-        SharedPreferences settings = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE);
-        return settings.getString(TOKEN, null);
+    public static void putUser(Context context,String preferenceName, User user) {
+        String user_json = JSONUtil.toJSON(user);
+        PreferencesUtils.putString(context, preferenceName, USER_JSON, user_json);
     }
 
-    public boolean clearToken(Context context, String preferenceName) {
-        SharedPreferences settings = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(TOKEN, "");
-        return editor.commit();
+    public static void putToken(Context context,String preferenceName, String token){
+        PreferencesUtils.putString(context,preferenceName,TOKEN,token);
     }
 
 }

@@ -29,7 +29,7 @@ import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import java.util.ArrayList;
 import java.util.List;
 
-import http.MyHttpCallback;
+import com.app.hehego.http.TokenHttpCallback;
 import okhttp3.Request;
 import okhttp3.Response;
 
@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
      */
     private void requestSliderData(){
         String url ="http://112.124.22.238:8081/course_api/banner/query?type=1";
-        mHttpHelper.get(url, new MyHttpCallback<List<SliderBean>>(getActivity()){
+        mHttpHelper.get(url, new TokenHttpCallback<List<SliderBean>>(getActivity()){
 
             @Override
             public void onSuccess(Response response, List<SliderBean> sliderBeans) {

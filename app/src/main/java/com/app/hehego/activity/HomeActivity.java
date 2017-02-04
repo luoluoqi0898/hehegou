@@ -9,13 +9,13 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.app.common.sdk.bean.Tab;
 import com.app.hehego.R;
 import com.app.hehego.fragment.CartFragment;
 import com.app.hehego.fragment.CategoryFragment;
 import com.app.hehego.fragment.HomeFragment;
 import com.app.hehego.fragment.HotFragment;
 import com.app.hehego.fragment.MineFragment;
+import com.app.uisdk.bean.Tab;
 import com.app.uisdk.view.FragmentTabHost;
 
 /**

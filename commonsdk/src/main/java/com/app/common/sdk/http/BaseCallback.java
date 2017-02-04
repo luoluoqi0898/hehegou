@@ -9,10 +9,6 @@ import java.lang.reflect.Type;
 import okhttp3.Request;
 import okhttp3.Response;
 
-//import com.squareup.okhttp.Request;
-//import com.squareup.okhttp.Response;
-
-
 public abstract class BaseCallback <T> {
 
 
